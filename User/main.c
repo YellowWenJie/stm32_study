@@ -1,8 +1,10 @@
 #include "stm32f10x.h" // Device header
 #include "Delay.h"
-
+#include "OLED.h"
+#include "CountSensor.h"
 int main(void)
 {
+
   // // * 寄存器方式
   // // * GPIC 的时钟
   // RCC->APB2ENR = 0x00000010;
@@ -27,14 +29,14 @@ int main(void)
   // // GPIO_ResetBits(GPIOC,GPIO_Pin_13);
 
   // * led灯闪烁
-  int sum = 0;
-  GPIO_InitTypeDef GPIO_InitStructure;
-  RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
-  // * 推挽输出
-  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
-  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_12;
-  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-  GPIO_Init(GPIOB, &GPIO_InitStructure);
+  // int sum = 0;
+  // GPIO_InitTypeDef GPIO_InitStructure;
+  // RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
+  // // * 推挽输出
+  // GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+  // GPIO_InitStructure.GPIO_Pin = GPIO_Pin_12;
+  // GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  // GPIO_Init(GPIOB, &GPIO_InitStructure);
   // * 设置高低电平
   // GPIO_WriteBit(GPIOA, GPIO_Pin_0, Bit_RESET);
   // while (sum < 20)
@@ -69,16 +71,34 @@ int main(void)
   // }
 
   // 蜂鸣器
-  while (sum < 5)
+  // while (sum < 5)
+  // {
+  //   GPIO_ResetBits(GPIOB, GPIO_Pin_12);
+  //   Delay_ms(100);
+  // 	GPIO_SetBits(GPIOB, GPIO_Pin_12);
+  //   Delay_ms(100);
+  // 	GPIO_ResetBits(GPIOB, GPIO_Pin_12);
+  //   Delay_ms(200);
+  // 	GPIO_SetBits(GPIOB, GPIO_Pin_12);
+  //   Delay_ms(200);
+  //   sum++;
+  // }
+
+  // * OLED
+  // OLED_Init();
+  // OLED_ShowChar(1, 1, 'A');
+  // OLED_ShowString(1,3,"HellowWorld");
+  // OLED_ShowNum(2,1,12345,6);
+  // while(1){};
+
+  // * 对射式红外传感器
+  OLED_Init();
+  CountSensor_Init();
+
+  OLED_ShowString(1, 1, "Count:");
+
+  while (1)
   {
-    GPIO_ResetBits(GPIOB, GPIO_Pin_12);
-    Delay_ms(100);
-		GPIO_SetBits(GPIOB, GPIO_Pin_12);
-    Delay_ms(100);
-		GPIO_ResetBits(GPIOB, GPIO_Pin_12);
-    Delay_ms(200);
-		GPIO_SetBits(GPIOB, GPIO_Pin_12);
-    Delay_ms(200);
-    sum++;
+    OLED_ShowNum(1, 7, CountSensor_Get(), 5);
   }
 }
