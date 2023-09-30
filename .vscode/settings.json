@@ -1,6 +1,8 @@
 {
   "C_Cpp.errorSquiggles": "disabled",
   "files.associations": {
-    "timer.h": "c"
+    "timer.h": "c",
+    "stm32f10x_tim.h": "c",
+    "delay.h": "c"
   }
 }

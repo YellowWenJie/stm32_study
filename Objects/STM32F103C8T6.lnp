@@ -33,6 +33,8 @@
 ".\objects\countsensor.o"
 ".\objects\encoder.o"
 ".\objects\timer.o"
+".\objects\pwm.o"
+".\objects\servo.o"
 ".\objects\main.o"
 ".\objects\stm32f10x_it.o"
 --strict --scatter ".\Objects\STM32F103C8T6.sct"

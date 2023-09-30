@@ -1,12 +1,18 @@
 #include "stm32f10x.h" // Device header
 #include "Delay.h"
 #include "OLED.h"
+#include "Key.h"
 #include "CountSensor.h"
 #include "Encoder.h"
 #include "Timer.h"
+#include "PWM.h"
+#include "SERVO.h"
 
 uint16_t Num;
+uint8_t i;
 
+uint8_t KeyNum;
+float Angle;
 int main(void)
 {
 
@@ -118,17 +124,61 @@ int main(void)
   // }
 
   // * TIM 时钟
-  OLED_Init();
-  Timer_Init();
+  // OLED_Init();
+  // Timer_Init();
 
-  OLED_ShowString(1, 1, "Num:");
-  OLED_ShowString(2, 1, "CNT:");
+  // OLED_ShowString(1, 1, "Num:");
+  // OLED_ShowString(2, 1, "CNT:");
 
-  while (1)
-  {
-    OLED_ShowNum(1, 5, Num, 5);
-    OLED_ShowNum(2, 5, TIM_GetCounter(TIM2), 5);
-  }
+  // while (1)
+  // {
+  //   OLED_ShowNum(1, 5, Num, 5);
+  //   OLED_ShowNum(2, 5, TIM_GetCounter(TIM2), 5);
+  // }
+  // * PWM 驱动 LED 呼吸灯
+  // PWM_Init();
+  // while (1)
+  // {
+  // 	// LED 逐渐变亮
+  //   for (i = 0; i <= 100; i++)
+  //   {
+  //     PWM_SetCompare1(i);
+  // 		Delay_ms(10);
+  //   }
+
+  // 	// LED 逐渐变暗
+  // 	for (i = 0; i <= 100; i++)
+  //   {
+  //    PWM_SetCompare1(100-i);
+  // 		Delay_ms(10);
+  //   }
+  // }
+
+  // * 驱动舵机
+  // PWM_Servos_Init(360);
+  // Key_Init();
+  // OLED_Init();
+  // OLED_ShowString(1, 1, "Angle:");
+  // while (1)
+  // {
+  //   KeyNum = Key_GetNum();
+  //   if (KeyNum == 1)
+  //   {
+  //     Angle += 1;
+  //     if (Angle > 9)
+  //     {
+  //       Angle = 0;
+  //     }
+  //   }
+  //   else if (KeyNum == 2)
+  //   {
+  //     Angle = 0;
+  //   }
+  //   Servo_SetAngle(Angle);
+  //   OLED_ShowNum(1, 7, Angle, 3);
+  // }
+
+  // * PWM 驱动直流电机
 }
 
 // * 中断函数
