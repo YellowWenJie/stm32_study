@@ -723,6 +723,26 @@
               <FileType>5</FileType>
               <FilePath>.\HardWare\CountSensor.h</FilePath>
             </File>
+            <File>
+              <FileName>Encoder.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\HardWare\Encoder.c</FilePath>
+            </File>
+            <File>
+              <FileName>ENcoder.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\HardWare\ENcoder.h</FilePath>
+            </File>
+            <File>
+              <FileName>Timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\HardWare\Timer.c</FilePath>
+            </File>
+            <File>
+              <FileName>Timer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\HardWare\Timer.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

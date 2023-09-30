@@ -2,6 +2,11 @@
 #include "Delay.h"
 #include "OLED.h"
 #include "CountSensor.h"
+#include "Encoder.h"
+#include "Timer.h"
+
+uint16_t Num;
+
 int main(void)
 {
 
@@ -92,13 +97,47 @@ int main(void)
   // while(1){};
 
   // * 对射式红外传感器
-  OLED_Init();
-  CountSensor_Init();
+  // OLED_Init();
+  // CountSensor_Init();
 
-  OLED_ShowString(1, 1, "Count:");
+  // OLED_ShowString(1, 1, "Count:");
+
+  // while (1)
+  // {
+  //   OLED_ShowNum(1, 7, CountSensor_Get(), 5);
+  // }
+  // * 旋转编码器
+  // int16_t Num;
+  // OLED_Init();
+  // Encoder_Init();
+  // OLED_ShowString(1, 1, "Num:");
+  // while (1)
+  // {
+  //   Num += Encoder_Get();
+  //   OLED_ShowSignedNum(1, 5, Num, 5);
+  // }
+
+  // * TIM 时钟
+  OLED_Init();
+  Timer_Init();
+
+  OLED_ShowString(1, 1, "Num:");
+  OLED_ShowString(2, 1, "CNT:");
 
   while (1)
   {
-    OLED_ShowNum(1, 7, CountSensor_Get(), 5);
+    OLED_ShowNum(1, 5, Num, 5);
+    OLED_ShowNum(2, 5, TIM_GetCounter(TIM2), 5);
+  }
+}
+
+// * 中断函数
+void TIM2_IRQHandler(void)
+{
+  if (TIM_GetITStatus(TIM2, TIM_IT_Update) == SET)
+  {
+    // * 清除标志位
+    Num++;
+    TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
   }
 }

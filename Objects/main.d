@@ -31,3 +31,5 @@
 .\objects\main.o: .\System\Delay.h
 .\objects\main.o: .\HardWare\OLED.h
 .\objects\main.o: .\HardWare\CountSensor.h
+.\objects\main.o: .\HardWare\Encoder.h
+.\objects\main.o: .\HardWare\Timer.h
