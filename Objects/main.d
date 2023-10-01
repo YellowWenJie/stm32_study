@@ -36,3 +36,6 @@
 .\objects\main.o: .\HardWare\Timer.h
 .\objects\main.o: .\HardWare\PWM.h
 .\objects\main.o: .\HardWare\SERVO.h
+.\objects\main.o: .\HardWare\IC.h
+.\objects\main.o: .\HardWare\AD.h
+.\objects\main.o: .\HardWare\MyDMA.h

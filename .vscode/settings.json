@@ -3,6 +3,7 @@
   "files.associations": {
     "timer.h": "c",
     "stm32f10x_tim.h": "c",
-    "delay.h": "c"
+    "delay.h": "c",
+    "ic.h": "c"
   }
 }

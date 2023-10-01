@@ -763,6 +763,36 @@
               <FileType>5</FileType>
               <FilePath>.\HardWare\SERVO.h</FilePath>
             </File>
+            <File>
+              <FileName>IC.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\HardWare\IC.c</FilePath>
+            </File>
+            <File>
+              <FileName>IC.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\HardWare\IC.h</FilePath>
+            </File>
+            <File>
+              <FileName>AD.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\HardWare\AD.c</FilePath>
+            </File>
+            <File>
+              <FileName>AD.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\HardWare\AD.h</FilePath>
+            </File>
+            <File>
+              <FileName>MyDMA.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\HardWare\MyDMA.c</FilePath>
+            </File>
+            <File>
+              <FileName>MyDMA.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\HardWare\MyDMA.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
