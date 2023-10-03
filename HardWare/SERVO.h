@@ -6,5 +6,4 @@
 void PWM_Servos_Init(uint16_t ServosModel);
 void Servo_SetAngle(float Angle);
 
-
 #endif

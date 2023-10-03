@@ -1,4 +1,5 @@
 #include "stm32f10x.h" // Device header
+#include "stdio.h"
 #include "Delay.h"
 #include "OLED.h"
 #include "Key.h"
@@ -10,6 +11,9 @@
 #include "IC.h"
 #include "AD.h"
 #include "MyDMA.h"
+#include "Serial.h"
+#include "MyI2C.h"
+#include "MPU6050.h"
 
 uint16_t Num;
 uint8_t i;
@@ -19,6 +23,7 @@ uint16_t AD0, AD1, AD2, AD3;
 
 uint8_t DataA[] = {0x01, 0x02, 0x03, 0x04};
 uint8_t DataB[] = {0, 0, 0, 0};
+uint8_t RxData;
 int main(void)
 {
 
@@ -155,10 +160,11 @@ int main(void)
   // }
 
   // * 驱动舵机
-  // PWM_Servos_Init(360);
+  // PWM_Servos_Init(180);
   // Key_Init();
   // OLED_Init();
   // OLED_ShowString(1, 1, "Angle:");
+  // * 360
   // while (1)
   // {
   //   KeyNum = Key_GetNum();
@@ -174,9 +180,20 @@ int main(void)
   //   {
   //     Angle = 0;
   //   }
+  //* 180
+  // while (1)
+  // {
+  //   KeyNum = Key_GetNum();
+  //   if (KeyNum == 1)
+  //   {
+  //     Angle += 30;
+  //     if (Angle > 180)
+  //     {
+  //       Angle = 0;
+  //     }
+  //   }
   //   Servo_SetAngle(Angle);
   //   OLED_ShowNum(1, 7, Angle, 3);
-  // }
 
   // * PWM 驱动直流电机
 
@@ -217,29 +234,57 @@ int main(void)
   // }
 
   // * DMA 数据转运
+  // OLED_Init();
+  // OLED_ShowHexNum(1, 1, DataA[0], 2);
+  // OLED_ShowHexNum(1, 4, DataA[1], 2);
+  // OLED_ShowHexNum(1, 7, DataA[2], 2);
+  // OLED_ShowHexNum(1, 10, DataA[3], 2);
+  // OLED_ShowHexNum(2, 1, DataB[0], 2);
+  // OLED_ShowHexNum(2, 4, DataB[1], 2);
+  // OLED_ShowHexNum(2, 7, DataB[2], 2);
+  // OLED_ShowHexNum(2, 10, DataB[3], 2);
+  // MyDMA_Init((uint32_t)DataA, (uint32_t)DataB, 4);
+  // OLED_ShowHexNum(3, 1, DataA[0], 2);
+  // OLED_ShowHexNum(3, 4, DataA[1], 2);
+  // OLED_ShowHexNum(3, 7, DataA[2], 2);
+  // OLED_ShowHexNum(3, 10, DataA[3], 2);
+  // OLED_ShowHexNum(4, 1, DataB[0], 2);
+  // OLED_ShowHexNum(4, 4, DataB[1], 2);
+  // OLED_ShowHexNum(4, 7, DataB[2], 2);
+  // OLED_ShowHexNum(4, 10, DataB[3], 2);
+
+  //* 串口
+  // OLED_Init();
+  // Serial_Init();
+  // while (1)
+  // {
+  // }
+
+  //* 数据包
+
+  //* I2C
+  // uint8_t Ack;
+  // MyI2C_Init();
+  // MyI2C_Start();
+  // OLED_Init();
+  // //* 起始之后，主机必须首先发送一个字节，内容是从机地址 + 读写位，进行寻址，1101 000 0， 1101 000 为 MPU6050 的从机地址，0 代表即将进行写入。
+  // MyI2C_SendByte(0xD0);
+  // //* 应答
+  // Ack = MyI2C_ReceiveAck();
+  // MyI2C_Stop();
+  // OLED_ShowNum(1, 1, Ack, 3);
+
+  //* MPU6050
+  uint8_t ID;
   OLED_Init();
+  MPU6050_Init();
+	//* 解除睡眠模式，第一个参数：指定寄存器地址，第二个参数：要写入的数据。在电源管理器寄存器 1，写入 0x00，解除睡眠模式。
+  MPU6050_WriteReg(0x6B, 0x00);
+	
+  MPU6050_WriteReg(0x19, 0xBB);
+  ID = MPU6050_ReadReg(0x19);
 
-  OLED_ShowHexNum(1, 1, DataA[0], 2);
-  OLED_ShowHexNum(1, 4, DataA[1], 2);
-  OLED_ShowHexNum(1, 7, DataA[2], 2);
-  OLED_ShowHexNum(1, 10, DataA[3], 2);
-
-  OLED_ShowHexNum(2, 1, DataB[0], 2);
-  OLED_ShowHexNum(2, 4, DataB[1], 2);
-  OLED_ShowHexNum(2, 7, DataB[2], 2);
-  OLED_ShowHexNum(2, 10, DataB[3], 2);
-
-  MyDMA_Init((uint32_t)DataA, (uint32_t)DataB, 4);
-
-  OLED_ShowHexNum(3, 1, DataA[0], 2);
-  OLED_ShowHexNum(3, 4, DataA[1], 2);
-  OLED_ShowHexNum(3, 7, DataA[2], 2);
-  OLED_ShowHexNum(3, 10, DataA[3], 2);
-
-  OLED_ShowHexNum(4, 1, DataB[0], 2);
-  OLED_ShowHexNum(4, 4, DataB[1], 2);
-  OLED_ShowHexNum(4, 7, DataB[2], 2);
-  OLED_ShowHexNum(4, 10, DataB[3], 2);
+  OLED_ShowHexNum(1, 1, ID, 2);
 }
 
 // * 中断函数

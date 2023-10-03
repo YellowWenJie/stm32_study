@@ -34,14 +34,14 @@ void MyDMA_Init(uint32_t AddrA, uint32_t AddrB, uint16_t Size)
 }
 
 //* 调用一次再次启动 DMA 转运
-void MyDMA_Transfer()
+void MyDMA_Transfer(void)
 {
   //* 重新给传输计数器赋值，必须要先给 DMA 失能
   DMA_Cmd(DMA1_Channel1, DISABLE);
   DMA_SetCurrDataCounter(DMA1_Channel1, MyDMA_Size);
   DMA_Cmd(DMA1_Channel1, ENABLE);
-  while (DMA_GetCurrDataCounter(DMA1_FLAG_TC1) == RESET)
+  while (DMA_GetCurrDataCounter(DMA1_Channel1) == RESET)
     ;
   //* 清除标志位
-  DMA_ClearFlag(DMA1_FLAG_TC1)
+  DMA_ClearFlag(DMA1_FLAG_TC1);
 }

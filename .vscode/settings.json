@@ -4,6 +4,9 @@
     "timer.h": "c",
     "stm32f10x_tim.h": "c",
     "delay.h": "c",
-    "ic.h": "c"
+    "ic.h": "c",
+    "stm32f10x.h": "c",
+    "countsensor.h": "c",
+    "myi2c.h": "c"
   }
 }

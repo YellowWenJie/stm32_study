@@ -28,6 +28,7 @@
 .\objects\main.o: .\Library\stm32f10x_usart.h
 .\objects\main.o: .\Library\stm32f10x_wwdg.h
 .\objects\main.o: .\Library\misc.h
+.\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\main.o: .\System\Delay.h
 .\objects\main.o: .\HardWare\OLED.h
 .\objects\main.o: .\HardWare\Key.h
@@ -39,3 +40,6 @@
 .\objects\main.o: .\HardWare\IC.h
 .\objects\main.o: .\HardWare\AD.h
 .\objects\main.o: .\HardWare\MyDMA.h
+.\objects\main.o: .\HardWare\Serial.h
+.\objects\main.o: .\HardWare\MyI2C.h
+.\objects\main.o: .\HardWare\MPU6050.h

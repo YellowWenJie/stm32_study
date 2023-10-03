@@ -38,9 +38,13 @@
 ".\objects\ic.o"
 ".\objects\ad.o"
 ".\objects\mydma.o"
+".\objects\motor.o"
+".\objects\serial.o"
+".\objects\myi2c.o"
+".\objects\mpu6050.o"
 ".\objects\main.o"
 ".\objects\stm32f10x_it.o"
---strict --scatter ".\Objects\STM32F103C8T6.sct"
+--library_type=microlib --strict --scatter ".\Objects\STM32F103C8T6.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list ".\Listings\STM32F103C8T6.map" -o .\Objects\STM32F103C8T6.axf

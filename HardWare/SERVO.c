@@ -3,21 +3,25 @@
 uint16_t ARR = 20000 - 1;
 uint16_t PSC = 72 - 1;
 uint16_t Servos_Model = 180;
+
+uint16_t GetServosModel()
+{
+  return Servos_Model;
+}
+
 // * 舵机
 void PWM_Servos_Init(uint16_t ServosModel)
 {
-	TIM_TimeBaseInitTypeDef TIM_TimeBaseInitStructure;
+  TIM_TimeBaseInitTypeDef TIM_TimeBaseInitStructure;
   GPIO_InitTypeDef GPIO_InitStructure;
   TIM_OCInitTypeDef TIM_OCInitStructure;
 
-	
   Servos_Model = ServosModel;
-  if (Servos_Model == 360)
+  if (ServosModel == 360)
   {
     ARR = 1999;
     PSC = 719;
   };
-
 
   // * 使用 APB1 开启时钟函数，因为 TMI2 是 APB1 总线的外设
   RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE);
@@ -82,14 +86,7 @@ void Servo_SetAngle(float Angle)
 {
   uint16_t pulse;
 
-  if (Servos_Model == 180)
-  {
-    // * 180度 舵机
-    // * 0 500
-    // * 180 500
-    PWM_SetCompare2(Angle / 180 * 2000 + 500);
-  }
-  else if (Servos_Model == 360)
+  if (GetServosModel() == 360)
   {
     // * 360度 舵机
 
@@ -106,5 +103,11 @@ void Servo_SetAngle(float Angle)
       pulse = 150 - Angle * 10;
     };
     PWM_SetCompare2(pulse);
+  }
+  else
+  { // * 180度 舵机
+    // * 0 500
+    // * 180 500
+    PWM_SetCompare2(Angle / 180 * 2000 + 500);
   }
 }
