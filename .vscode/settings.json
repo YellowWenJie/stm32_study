@@ -7,6 +7,8 @@
     "ic.h": "c",
     "stm32f10x.h": "c",
     "countsensor.h": "c",
-    "myi2c.h": "c"
+    "myi2c.h": "c",
+    "stm32f10x_rcc.h": "c",
+    "stm32f10x_gpio.h": "c"
   }
 }

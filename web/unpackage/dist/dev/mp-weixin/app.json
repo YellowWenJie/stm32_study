@@ -1,0 +1,33 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/settings/index"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#3cc51f",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/icons/stm32_0.png",
+        "selectedIconPath": "static/icons/stm32_1.png",
+        "text": "stm32"
+      },
+      {
+        "pagePath": "pages/settings/index",
+        "iconPath": "static/icons/CPU_0.png",
+        "selectedIconPath": "static/icons/CPU_1.png",
+        "text": "esp32"
+      }
+    ]
+  },
+  "usingComponents": {}
+}
