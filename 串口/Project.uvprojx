@@ -723,6 +723,46 @@
               <FileType>5</FileType>
               <FilePath>.\Hardware\HCSR04.h</FilePath>
             </File>
+            <File>
+              <FileName>PWM.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Hardware\PWM.c</FilePath>
+            </File>
+            <File>
+              <FileName>PWM.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Hardware\PWM.h</FilePath>
+            </File>
+            <File>
+              <FileName>Key.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Hardware\Key.c</FilePath>
+            </File>
+            <File>
+              <FileName>Key.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Hardware\Key.h</FilePath>
+            </File>
+            <File>
+              <FileName>Motor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Hardware\Motor.c</FilePath>
+            </File>
+            <File>
+              <FileName>Motor.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Hardware\Motor.h</FilePath>
+            </File>
+            <File>
+              <FileName>Mini_mp3.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Hardware\Mini_mp3.c</FilePath>
+            </File>
+            <File>
+              <FileName>Mini_mp3.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Hardware\Mini_mp3.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

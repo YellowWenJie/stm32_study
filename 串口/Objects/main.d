@@ -33,3 +33,6 @@
 .\objects\main.o: .\Hardware\OLED.h
 .\objects\main.o: .\Hardware\Serial.h
 .\objects\main.o: .\Hardware\HCSR04.h
+.\objects\main.o: .\Hardware\Motor.h
+.\objects\main.o: .\Hardware\Key.h
+.\objects\main.o: .\Hardware\Mini_mp3.h

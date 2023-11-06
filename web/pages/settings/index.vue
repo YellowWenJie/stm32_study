@@ -1,37 +1,321 @@
 <template>
-  <view class="content">
-  </view>
+    <div>
+        <button type="primary" @click="hasPermission">检查是否有蓝牙权限</button>
+        <button type="primary" @click="isSupport">检查设备是否支持蓝牙</button>
+        <button type="primary" @click="isOpen">判断蓝牙是否打开</button>
+        <button type="primary" @click="openBT">打开蓝牙</button>
+        <button type="primary" @click="closeBT">关闭蓝牙</button>
+        <button type="primary" @click="listBondedBT">获取已配对列表</button>
+        <button type="primary" @click="searchBT">查找蓝牙设备</button>
+        <button type="primary" @click="stopSearch">停止查找蓝牙</button>
+        <button type="primary" @click="connect">连接蓝牙</button>
+        <button type="primary" @click="sendBytes">发送字节数组</button>
+        <button type="primary" @click="sendHexStr">发送十六进制字符串</button>
+        <button type="primary" @click="sendGBKStr">发送GBK字符</button>
+        <button type="primary" @click="isConnected">连接状态</button>
+        <button type="primary" @click="pairBT">配对</button>
+        <text>2023-09-09更新</text>
+        <button type="primary" @click="createBond">新配对</button>
+        <button type="primary" @click="removeBond">取消配对</button>
+        <button type="primary" @click="disconnectAll">断开所有连接</button>
+        <button type="primary" @click="checkConnect">检查连接</button>
+        <button type="primary" @click="registerReceivedCallback">注册数据接收回调</button>
+        <button type="primary" @click="unRegisterReceivedCallback">注销数据接收回调</button>
+        <button type="primary" @click="registerConnectStatusChangeCallback">注册连接状态回调</button>
+        <button type="primary" @click="unRegisterConnectStatusChangeCallback">注销连接状态回调</button>
+        <button type="primary" @click="sendData">发送数据（整合版）</button>
+    </div>
 </template>
 
 <script>
-export default {
-}
+    // 获取 module 
+    var blueModule = uni.requireNativePlugin("XM-Bluetooth2Module")
+    const modal = uni.requireNativePlugin('modal');
+    export default {
+        () {
+
+        },
+        onShow: function() {
+            console.log('Page Show')
+        },
+        onHide: function() {
+            console.log('Page Hide')
+        },
+        methods: {
+            hasPermission() {
+                blueModule.hasPermission((ret) => {
+                    console.log(ret)
+                    modal.toast({
+                        //发送操作结果
+                        message: ret,
+                        duration: 1.5
+                    });
+                });
+            },
+            isSupport() {
+                blueModule.isSupport((ret) => {
+                    console.log(ret)
+                    modal.toast({
+                        //发送操作结果
+                        message: ret,
+                        duration: 1.5
+                    });
+                });
+            },
+            isOpen() {
+                blueModule.isOpen((ret) => {
+                    console.log(ret)
+                    modal.toast({
+                        //发送操作结果
+                        message: ret,
+                        duration: 1.5
+                    });
+                });
+            },
+            openBT() {
+                blueModule.openBT((ret) => {
+                    console.log(ret)
+                    modal.toast({
+                        //发送操作结果
+                        message: ret,
+                        duration: 1.5
+                    });
+                });
+            },
+            closeBT() {
+                blueModule.closeBT((ret) => {
+                    console.log(ret)
+                    modal.toast({
+                        //发送操作结果
+                        message: ret,
+                        duration: 1.5
+                    });
+                });
+            },
+            listBondedBT() {
+                blueModule.listBondedBT((ret) => {
+                    console.log(ret)
+                    modal.toast({
+                        //发送操作结果
+                        message: ret,
+                        duration: 1.5
+                    });
+                });
+            },
+            searchBT() {
+                blueModule.searchBT((ret) => {
+                    console.log(ret)
+                    modal.toast({
+                        //发送操作结果
+                        message: ret,
+                        duration: 1.5
+                    });
+                });
+            },
+            stopSearch() {
+                blueModule.stopSearch();
+            },
+            //连接
+            connect() {
+                blueModule.connect({
+                    MACAddress: 'DC:0D:30:22:FC:FB',
+                    uuid: '00001101-0000-1000-8000-00805f9b34fb',
+                    sleepTime: 50 //接收对面设备发来的信息刷新间隔
+                }, (result) => {
+                    //连接结果
+                    console.log(result)
+                    modal.toast({
+                        message: result,
+                        duration: 1.5
+                    });
+                }, (data) => {
+                    //接收的数据回调
+                    console.log(data)
+                    modal.toast({
+                        //发送操作结果
+                        message: data,
+                        duration: 1.5
+                    });
+                })
+            },
+            //断开连接
+            disConnect() {
+                blueModule.disconnect({
+                    MACAddress: 'DC:0D:30:22:FC:FB',
+                    uuid: '00001101-0000-1000-8000-00805f9b34fb',
+                    sleepTime: 50 //接收对面设备发来的信息刷新间隔
+                }, (result) => {
+                    //连接结果
+                    console.log(result)
+                    modal.toast({
+                        message: result,
+                        duration: 1.5
+                    });
+                });
+            },
+            //写入数据
+            sendBytes() {
+                blueModule.sendBytes([0x00, 0xff, 0xee], (result) => {
+                    //结果
+                    console.log(result)
+                    modal.toast({
+                        message: result,
+                        duration: 1.5
+                    });
+                });
+            },
+            sendGBKStr() {
+                var ret = blueModule.sendGBKStr('我是gbk', (result) => {
+                    //结果
+                    console.log(result)
+                    modal.toast({
+                        message: result,
+                        duration: 1.5
+                    });
+                });
+                console.log(ret)
+                modal.toast({
+                    //发送操作结果
+                    message: ret,
+                    duration: 1.5
+                });
+            },
+            sendHexStr() {
+                var ret = blueModule.sendHexStr('FFFF', (result) => {
+                    //结果
+                    console.log(result)
+                    modal.toast({
+                        message: result,
+                        duration: 1.5
+                    });
+                });
+                console.log(ret)
+                modal.toast({
+                    //发送操作结果
+                    message: ret,
+                    duration: 1.5
+                });
+            },
+            sendUtf8Str() {
+                var ret = blueModule.sendUtf8Str('我是utf-8', (result) => {
+                    //结果
+                    console.log(result)
+                    modal.toast({
+                        message: result,
+                        duration: 1.5
+                    });
+                });
+                console.log(ret)
+                modal.toast({
+                    //发送操作结果
+                    message: ret,
+                    duration: 1.5
+                });
+            },
+            pairBT() {
+                blueModule.pairBT({
+                    mac: ''
+                }, (ret) => {
+                    console.log(ret);
+                    modal.toast({
+                        message: ret,
+                        duration: 1.5
+                    });
+                });
+            },
+            isConnected() {
+                var ret = blueModule.isConnected();
+                console.log(ret)
+                modal.toast({
+                    //发送操作结果
+                    message: ret,
+                    duration: 1.5
+                });
+            },
+            createBond() {
+                blueModule.createBond({
+                    mac: ''
+                }, (ret) => {
+                    console.log(ret);
+                    modal.toast({
+                        message: ret,
+                        duration: 1.5
+                    });
+                });
+            },
+            removeBond() {
+                blueModule.removeBond({
+                    mac: ''
+                }, (ret) => {
+                    console.log(ret);
+                    modal.toast({
+                        message: ret,
+                        duration: 1.5
+                    });
+                });
+            },
+            disconnectAll() {
+                blueModule.disconnectAll((ret) => {
+                    console.log(ret);
+                    modal.toast({
+                        message: ret,
+                        duration: 1.5
+                    });
+                });
+            },
+            checkConnect() {
+                blueModule.checkConnect({
+                    mac: '',
+                    uuid: ''
+                }, (ret) => {
+                    console.log(ret);
+                    modal.toast({
+                        message: ret,
+                        duration: 1.5
+                    });
+                });
+            },
+            registerReceivedCallback() {
+                blueModule.registerReceivedCallback((ret) => {
+                    console.log(ret);
+                    modal.toast({
+                        message: ret,
+                        duration: 1.5
+                    });
+                });
+            },
+            unRegisterReceivedCallback() {
+                blueModule.unRegisterReceivedCallback();
+            },
+            registerConnectStatusChangeCallback() {
+                blueModule.registerConnectStatusChangeCallback((ret) => {
+                    console.log(ret);
+                    modal.toast({
+                        message: ret,
+                        duration: 1.5
+                    });
+                });
+            },
+            unRegisterConnectStatusChangeCallback() {
+                blueModule.unRegisterConnectStatusChangeCallback();
+            },
+            sendData() {
+                blueModule.sendData({
+                    mac: '',
+                    uuid: '',
+                    bytes: [0xFF, 0xF0],//优先级第一
+                    hexStr: 'FFF0',//优先级第二
+                    utf8: '你好',//优先级第三
+                    gbk: '你好',//优先级第四
+                    ascii: 'abcd'//优先级第五
+                }, (ret) => {
+                    console.log(ret);
+                    modal.toast({
+                        message: ret,
+                        duration: 1.5
+                    });
+                });
+            }
+        }
+    }
 </script>
-
-<style>
-.content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.logo {
-  height: 200rpx;
-  width: 200rpx;
-  margin-top: 200rpx;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 50rpx;
-}
-
-.text-area {
-  display: flex;
-  justify-content: center;
-}
-
-.title {
-  font-size: 36rpx;
-  color: #8f8f94;
-}
-</style>
