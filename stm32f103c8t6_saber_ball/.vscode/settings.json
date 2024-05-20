@@ -1,0 +1,13 @@
+{
+  "stm32-for-vscode.openOCDPath": false,
+  "stm32-for-vscode.armToolchainPath": false,
+  "files.associations": {
+    "stm32f1xx_hal.h": "c",
+    "main.h": "c",
+    "tim.h": "c",
+    "motor.h": "c",
+    "oledfont.h": "c",
+    "i2c.h": "c",
+    "key.h": "c"
+  }
+}

@@ -18,13 +18,13 @@ int main(void)
 {
 
   OLED_Init();
-  Motor_Init();
-  Key_Init();
+  // Motor_Init();
+  // Key_Init();
   // HCSR04_Init();
   Serial_Init();
-  MiniMp3_Init();
-  OLED_ShowString(1, 1, "Speed:");
-  OLED_ShowString(2, 1, "RxData:");
+  // MiniMp3_Init();
+  // OLED_ShowString(1, 1, "Speed:");
+  // OLED_ShowString(2, 1, "RxData:");
 
   while (1)
   {
@@ -33,24 +33,24 @@ int main(void)
     {
       RxData = Serial_GetRxData();
       Serial_SendByte(RxData);
-      OLED_ShowHexNum(2, 8, RxData, 4);
+      OLED_ShowHexNum(1, 1, RxData, 10);
 
-      if (RxData == 1)
-      {
-        MiniMp3_Play();
-      }
-      if (RxData == 2)
-      {
-        MiniMp3_Stop();
-      }
-      if (RxData == 3)
-      {
-        MiniMp3_Specify_File_Play();
-      }
+      // if (RxData == 1)
+      // {
+      //   MiniMp3_Play();
+      // }
+      // if (RxData == 2)
+      // {
+      //   MiniMp3_Stop();
+      // }
+      // if (RxData == 3)
+      // {
+      //   MiniMp3_Specify_File_Play();
+      // }
     }
 
-    Motor_SetSpeed(Speed);
-    OLED_ShowSignedNum(1, 7, Speed, 3);
+    // Motor_SetSpeed(Speed);
+    // OLED_ShowSignedNum(1, 7, Speed, 3);
   }
 }
 

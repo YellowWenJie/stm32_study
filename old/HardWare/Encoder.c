@@ -14,7 +14,7 @@ void Encoder_Init(void)
   // * AFIO
   RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO, ENABLE);
 
-  // * 配置 GPIO  IPU为上拉输入，默认高电平
+  // * 配置 GPIO  IPU为上拉输入，默认高电�?
   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;
   GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
   GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_1;
